@@ -1,0 +1,21 @@
+name: Static code analysis
+
+on:
+  push:
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.9-alpine3.12
+    name: mypy
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: |
+        apk add --no-cache gcc musl-dev
+        pip install mypy sqlalchemy-stubs pipenv
+        pipenv install --system --deploy --ignore-pipfile
+        pip install -e .
+    - name: mypy
+      run: mypy holiday_api/

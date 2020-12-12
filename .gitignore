@@ -1,0 +1,12 @@
+.*
+!.coveragerc
+!.dockerignore
+!.gitignore
+!.github/
+*.egg-info
+*build/
+__pycache__/
+dist/
+test.db
+holiday.db
+add_holidays.py
