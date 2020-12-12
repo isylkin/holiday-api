@@ -11,4 +11,4 @@ RUN pip install pipenv &&\
 
 WORKDIR /holiday_api/holiday_api
 
-CMD ["uvicorn", "--host", "0.0.0.0", "main:app", "--reload"]
+CMD ["uvicorn", "--host", "0.0.0.0", "--proxy-headers", "main:app", "--reload"]
