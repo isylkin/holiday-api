@@ -8,6 +8,7 @@
 
 ## [0.2.0] - 2020-12-14
 ### Added
+- Additional options to ``uvicorn`` command.
 - This ``CHANGELOG.md``.
 
 ### Removed
