@@ -25,7 +25,7 @@ class UniqueUsers:
 
     def _get_total_unique_users(self) -> models.TotalUniqueUsers:
         total_users = self.session.query(  # type: ignore
-            models.TotalUniqueUsers).get(id=1)
+            models.TotalUniqueUsers).get(1)
         return total_users  # type: ignore
 
     def update(
