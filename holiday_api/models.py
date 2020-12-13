@@ -16,6 +16,7 @@ class UniqueUser(Base):
 class TotalUniqueUsers(Base):
     __tablename__ = 'total_unique_users'
 
+    id = Column(Integer, primary_key=True)
     count = Column(Integer, default=0, nullable=False)
 
 
