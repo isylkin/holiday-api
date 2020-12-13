@@ -4,8 +4,7 @@ RUN mkdir /holiday_api
 COPY . /holiday_api
 WORKDIR /holiday_api
 
-RUN pip install pipenv &&\
-	pipenv install --system --deploy --ignore-pipfile &&\
+RUN pip install -r requirements.txt &&\
 	pip install -e . &&\
 	rm -rfv /var/cache/apk/*;
 
