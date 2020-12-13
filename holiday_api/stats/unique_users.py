@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from ipaddress import IPv4Address, IPv6Address
 from typing import Optional, Union
 
@@ -13,9 +12,21 @@ UNIQUE_USERS = Counter(
 )
 
 
-@dataclass
 class UniqueUsers:
-    session: Session
+    def __init__(self, session: Session):
+        self.session = session
+        self._set_initial_counter_value()
+
+    def _set_initial_counter_value(self) -> None:
+        if UNIQUE_USERS._value.get() == 0:  # pylint: disable=W0212
+            total_users = self._get_total_unique_users()
+            UNIQUE_USERS.inc(total_users.count)
+            self.session.commit()  # type: ignore
+
+    def _get_total_unique_users(self) -> models.TotalUniqueUsers:
+        total_users = self.session.query(  # type: ignore
+            models.TotalUniqueUsers).get(id=1)
+        return total_users  # type: ignore
 
     def update(
         self,
@@ -28,7 +39,10 @@ class UniqueUsers:
             self.session.commit()  # type: ignore
         else:
             unique_user = self.create(ip_address)
+            total_unique_users = self._get_total_unique_users()
+            total_unique_users.count = total_unique_users.count + 1
             UNIQUE_USERS.inc()
+            self.session.commit()  # type: ignore
         return unique_user
 
     def create(

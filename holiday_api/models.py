@@ -13,6 +13,12 @@ class UniqueUser(Base):
     count = Column(Integer, default=1, nullable=False)
 
 
+class TotalUniqueUsers(Base):
+    __tablename__ = 'total_unique_users'
+
+    count = Column(Integer, default=0, nullable=False)
+
+
 class User(Base):
     __tablename__ = 'users'
 
