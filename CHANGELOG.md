@@ -6,9 +6,15 @@
 ### Added
 - Initial version.
 
-## [0.1.1] - 2020-12-14
+## [0.2.0] - 2020-12-14
+### Added
+- This ``CHANGELOG.md``.
+
 ### Removed
-- ``TODO.md``.
+- Obsolete ``TODO.md``.
+
+### Changed
+- Install dependencies via ``requirements.txt`` instead of ``pipenv``.
 
 ### Fixed
 - Unique users statistics resetting on restart.
